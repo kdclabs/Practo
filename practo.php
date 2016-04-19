@@ -11,6 +11,11 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://www.payumoney.com/webfront/index/kdclabs
 Contributors: kdclabs, vachan
 */
+// Register Script
+function practo_widget_script() {
+	wp_register_script( 'practo-widget', 'https://www.practo.com/bundles/practopractoapp/js/abs_widget_helper.js', array(), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'practo_widget_script' );
 
 // Add Shortcode
 function practo_shortcode( $atts ) {
@@ -26,8 +31,7 @@ function practo_shortcode( $atts ) {
 
 	// Code
 	echo '<practo:abs_widget widget="'.$atts[widget].'"></practo:abs_widget>';
-	wp_register_script( 'practo_widgets_js', 'https://www.practo.com/bundles/practopractoapp/js/abs_widget_helper.js', false, false, true );
+	wp_enqueue_script( 'practo-widget' );
 }
 add_shortcode( 'practo', 'practo_shortcode' );
-
 ?>
